@@ -1,0 +1,6 @@
+export const FETCH_POSTS = 'POST/FETCH_POSTS'
+export const ADD_POST = 'POST/ADD_POST'
+export const DELETE_POST = 'POST/DELETE_POST'
+export const TOGGLE_DIALOG = 'APP/TOGGLE_DIALOG'
+export const TOGGLE_LOADER = 'APP/TOGGLE_LOADER'
+export const TOGGLE_MODAL = 'APP/TOGGLE_MODAL'
