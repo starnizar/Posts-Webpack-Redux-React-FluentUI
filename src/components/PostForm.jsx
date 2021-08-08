@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
-import {TextField, PrimaryButton, DefaultButton, Stack, Modal} from '@fluentui/react'
+import {TextField} from '@fluentui/react/lib/TextField'
+import {Modal, Stack} from '@fluentui/react'
+import {PrimaryButton, DefaultButton} from '@fluentui/react/lib/Button'
 import {toggleModal} from "../redux/actions";
 
 const PostForm = (props) => {

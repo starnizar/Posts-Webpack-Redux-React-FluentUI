@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Dialog, DialogType, DialogFooter, PrimaryButton, DefaultButton} from '@fluentui/react';
+import {Dialog, DialogType, DialogFooter} from '@fluentui/react/lib/Dialog'
+import {PrimaryButton, DefaultButton} from '@fluentui/react/lib/Button'
 import {toggleDialog} from '../redux/actions'
 
 const DeleteDialog = (props) => {

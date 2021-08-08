@@ -1,14 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Stack, DefaultButton, PrimaryButton} from '@fluentui/react'
+import {Stack} from '@fluentui/react'
+import {DefaultButton, PrimaryButton} from '@fluentui/react/lib/Button'
 import {initializeIcons} from '@fluentui/font-icons-mdl2'
 import {fetchPosts, addPost, toggleModal} from './redux/actions'
 import PostForm from './components/PostForm'
 import Posts from './components/Posts'
 
+initializeIcons()
 
 const App = (props) => {
-    initializeIcons()
     const styles = {
         app: {
             root: {

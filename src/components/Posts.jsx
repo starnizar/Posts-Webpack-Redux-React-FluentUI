@@ -1,14 +1,16 @@
 import React, {useState, useMemo} from 'react'
-import {connect} from "react-redux";
-import {DetailsList, SelectionMode, buildColumns, MarqueeSelection, Selection, PrimaryButton, Stack} from '@fluentui/react'
+import {connect} from 'react-redux'
+import {Stack} from '@fluentui/react/lib/Stack'
+import {SelectionMode, MarqueeSelection, Selection} from '@fluentui/react/lib/MarqueeSelection'
+import {DetailsList, buildColumns} from '@fluentui/react/lib/DetailsList'
+import {PrimaryButton} from '@fluentui/react/lib/Button'
 import {initializeIcons} from '@fluentui/font-icons-mdl2'
 import {toggleDialog, deletePosts} from "../redux/actions";
 import DeleteDialog from './Dialog'
 import Loader from "./Loader";
 
+initializeIcons()
 const Posts = (props) => {
-    initializeIcons()
-
     if (props.loader) {
         return <Loader />
     }
