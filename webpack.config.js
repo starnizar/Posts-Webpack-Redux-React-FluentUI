@@ -30,10 +30,10 @@ module.exports = {
     context: path.resolve(__dirname, 'src'),
     mode: 'development',
     entry: {
-        main: ['@babel/polyfill', './index.jsx']
+        index: ['@babel/polyfill', './index.jsx']
     },
     output: {
-        filename: '[name].[contenthash].js',
+        filename: isDev ? '[name].js' : '[name].[contenthash].js',
         path: path.resolve(__dirname, 'dist')
     },
     resolve: {
@@ -59,12 +59,6 @@ module.exports = {
     ],
     module: {
         rules: [
-            {
-                test: /\.(jsx?|tsx?)$/,
-                include: require('@fluentui/webpack-utilities/lib/fabricAsyncLoaderInclude'),
-                loader: '@fluentui/webpack-utilities/lib/fabricAsyncLoader.js',
-
-            },
             {
                 test: /\.(png|jpg|svg|gif|webp)$/,
                 type: 'asset/resource'

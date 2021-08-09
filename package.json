@@ -39,7 +39,6 @@
     "@babel/polyfill": "^7.12.1",
     "@fluentui/font-icons-mdl2": "^8.1.8",
     "@fluentui/react": "^8.27.0",
-    "@fluentui/webpack-utilities": "^8.1.4",
     "i": "^0.3.6",
     "npm": "^7.20.5",
     "react": "^17.0.2",
