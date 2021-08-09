@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import {TextField} from '@fluentui/react/lib/TextField'
-import {Modal, Stack} from '@fluentui/react'
+import {Modal, Stack, Callout, Text} from '@fluentui/react'
 import {PrimaryButton, DefaultButton} from '@fluentui/react/lib/Button'
-import {toggleModal} from "../redux/actions";
+import {toggleModal, showCallout, hideCallout} from "../redux/actions";
 
 const PostForm = (props) => {
     const [state, setState] = useState({
@@ -20,6 +20,19 @@ const PostForm = (props) => {
                 maxWidth: '1000px',
                 padding: '20px'
             }
+        },
+        callout: {
+            root: {
+                padding: '10px 15px',
+                borderRadius: '5px',
+                border: '2px solid red'
+            }
+        },
+        calloutText: {
+            root: {
+                color: 'red',
+                fontWeight: 600
+            }
         }
     }
 
@@ -33,9 +46,11 @@ const PostForm = (props) => {
         event.preventDefault()
         const {title, body} = state
         if (!title.trim()) {
+            props.showCallout('Empty title field')
             return
         }
         if (!body.trim() || body.trim().length < 15) {
+            props.showCallout('Content should have at least 15 characters')
             return
         }
         const newPost = {...state, id: Date.now().toString()}
@@ -52,7 +67,16 @@ const PostForm = (props) => {
                     <form onSubmit={createPost} >
                         <TextField  name={'title'} value={state.title} onChange={textFieldHandler} label={'Post title'}/>
                         <TextField  placeholder={'Minimum 15 characters'} name={'body'} value={state.body} onChange={textFieldHandler} label={'Post content'} multiline autoAdjustHeight resizable={false}/>
-                        <PrimaryButton type={'submit'} text={'Create post'} style={{margin: '20px 20px 0 0'}}/>
+                        <PrimaryButton id={'postForm'} type={'submit'} text={'Create post'} style={{margin: '20px 20px 0 0'}}/>
+                        {props.isCallout && <Callout
+                            role={'alertdialog'}
+                            target={'#postForm'}
+                            ariaDescribedBy={'calloutText'}
+                            onDismiss={props.hideCallout}
+                            styles={styles.callout}
+                        >
+                            <Text id={'calloutText'} styles={styles.calloutText}>{props.message}</Text>
+                        </Callout>}
                         <DefaultButton text={'Cancel'} onClick={() => props.toggleModal()} style={{marginTop: '20px'}}/>
                     </form>
                 </Stack.Item>
@@ -63,12 +87,14 @@ const PostForm = (props) => {
 
 const mapStateToProps = state => {
     return {
-        isModal: state.app.modal
+        isModal: state.app.modal,
+        isCallout: state.app.callout,
+        message: state.app.message
     }
 }
 
 const mapDispatchToProps = {
-    toggleModal
+    toggleModal, showCallout, hideCallout
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostForm)

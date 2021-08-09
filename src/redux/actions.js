@@ -1,4 +1,12 @@
-import {ADD_POST, DELETE_POST, FETCH_POSTS, TOGGLE_DIALOG, TOGGLE_MODAL, TOGGLE_LOADER} from "./types";
+import {
+    ADD_POST,
+    DELETE_POST,
+    FETCH_POSTS,
+    TOGGLE_DIALOG,
+    TOGGLE_MODAL,
+    TOGGLE_LOADER,
+    SHOW_CALLOUT, HIDE_CALLOUT
+} from "./types";
 
 export function fetchPosts() {
     return async dispatch => {
@@ -38,5 +46,18 @@ export function toggleLoader() {
 export function toggleModal() {
     return {
         type: TOGGLE_MODAL
+    }
+}
+
+export function showCallout(message) {
+    return dispatch => {
+        dispatch({type: SHOW_CALLOUT, payload: message})
+        setTimeout(() => dispatch(hideCallout()), 3000)
+    }
+}
+
+export function hideCallout() {
+    return {
+        type: HIDE_CALLOUT
     }
 }
